@@ -16,6 +16,9 @@ router = APIRouter(
 def get_db():
     db = SessionLocal()
     try:
+
+
+
         yield db
     finally:
         db.close()
@@ -23,7 +26,7 @@ def get_db():
 
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
-
+x=0
 
 @router.get("/todo", status_code=status.HTTP_200_OK)
 async def read_all(user: user_dependency, db: db_dependency):
